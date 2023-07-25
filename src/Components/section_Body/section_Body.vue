@@ -16,13 +16,13 @@
                                 </button>
                             </RouterLink>
                             <p>Show <span>
-                                <select name="doctorlist" id="doctorlist">
-                                    <option value="10">10</option>
-                                    <option value="25">25</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
-                                </select>
-                            </span> entries</p>
+                                    <select name="doctorlist" id="doctorlist">
+                                        <option value="10">10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select>
+                                </span> entries</p>
                         </div>
                     </div>
                     <div class="list_btn_right">
@@ -30,7 +30,7 @@
                         <input @keyup="inputSearch" v-model="search" type="text" name="search">
                     </div>
                     <div class="list_table">
-                        <Spinner/>
+                        <Spinner />
                         <div class="table">
                             <table>
                                 <thead>
@@ -100,7 +100,7 @@
                                 </tbody>
                             </table>
                             <div class="list_end">
-                                <p>Showing to 10  of 10 entries</p>
+                                <p>Showing to 10 of 10 entries</p>
                                 <div class="list_end_bts">
                                     <div class="first" v-for="item in items.links" :key="item">
                                         <button @click="changeApi(item.label)">
@@ -123,49 +123,41 @@ import Spinner from '../../ui/spinner.vue';
 import axios from 'axios'
 export default {
     components: {
-    footer_Cover,
-    Spinner
-},
+        footer_Cover,
+        Spinner
+    },
     data() {
         return {
-            items: [],
-            page: 'page=1',
+            // items:this.$store.state.items,
+            page: '1',
             search: '',
             find: '',
             delete: '',
             edit: '',
-            isActive:true,
-            isDisactive:false
+            isActive: true,
+            isDisactive: false
         };
     },
+    computed: {
+        items() {
+            return this.$store.state.items
+        },
+        loading() {
+            return this.$store.state.api.loading;
+        },
+    },
     mounted() {
-        this.getDataFromAPI();
+        // this.getDataFromAPI(),
+        this.fetchData(this.page)
+
     },
     methods: {
-        isLoadingFunc(istrue) {
-            this.$store.state.isLoading = istrue
-        },
-        async getDataFromAPI() {
-            this.isLoadingFunc(true)
-            try {
-                const response = await fetch(`https://tulibayev.uz/api/doctor?${this.page}`, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token') } })
-                // if(response.status === 401){
-                //     window.location.href='/login'
-                // }
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                this.isLoadingFunc(false)
-                const data = await response.json();
-                this.items = data;
-                
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
+        fetchData(page) {
+            this.$store.dispatch('fetchData', page);
         },
         changeApi(item) {
-            this.page = `page=${item}`
-            this.getDataFromAPI()
+            this.page = item
+            this.fetchData(this.page)
         },
         async getDataSearch() {
             try {
@@ -198,7 +190,8 @@ export default {
             if (window.confirm('ochiraymi')) {
                 this.delete = item
                 await this.deleteDataFromAPI()
-                this.getDataFromAPI()
+                // this.getDataFromAPI()
+                this.fetchData()
             }
         },
     },
@@ -429,18 +422,21 @@ p:nth-child(1) {
     border-radius: 5px;
     background-color: #556ee6;
 }
-#doctorlist{
+
+#doctorlist {
     width: 55px;
     height: 30px;
     border: 1px solid !important;
     border-radius: 0.25rem;
     padding: 0 5px 0 5px;
     font-size: 11px;
-    font-family: 'Poppins',sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
-#doctorlist:focus{
+
+#doctorlist:focus {
     outline: none;
 }
+
 .add_New_Doc p {
     color: #fff;
     font-weight: 400;
@@ -458,4 +454,5 @@ p:nth-child(1) {
 .first {
     cursor: pointer;
 
-}</style>
+}
+</style>

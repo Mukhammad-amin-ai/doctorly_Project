@@ -17,8 +17,8 @@
             </div>
             <div class="autifi_Cover">
                 <form class="authifi">
-                    <label for="username">Email</label>
-                    <input type="email" name="username" id="reset" placeholder="Enter email" v-model="email">
+                    <!-- <label for="username">Email</label>
+                    <input type="email" name="username" id="reset" placeholder="Enter email" v-model="email"> -->
                     <label for="password">Password</label>
                     <input type="password" id="reset" v-model="password">
                 </form>
@@ -30,11 +30,11 @@
             </div>
         </div>
         <div class="text_bottom">
-            <p>Remember It ? 
+            <!-- <p>Remember It ? 
                 <RouterLink to="/login">
                <span> Sign In here</span>    
                 </RouterLink>
-                </p>
+                </p> -->
             <p>© 2023 Doctorly. Crafted with  <span><i class='bx bxs-heart'></i></span> by Themesbrand</p>
         </div>
     </div>
@@ -87,7 +87,7 @@ export default {
 
 .auth_Inputs {
     width: 450px;
-    height: 500px;
+    height: 300px;
     background-color: #fff;
     border-radius: 0.25rem;
     position: relative;
