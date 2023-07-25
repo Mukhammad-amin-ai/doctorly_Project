@@ -1,4 +1,8 @@
 <template >
+     <div class="header_cover">
+        <header_Doctorly/>
+        <navbar_Doctorly/>
+    </div>
     <div class="edit_cover">
         <div class="edit_input">
             <div class="edit">
@@ -97,9 +101,13 @@
 </template>
 <script>
 import footer_Cover from '../footer_section/footer_secton.vue'
+import header_Doctorly from '../header_Doctorly/header_Doctorly.vue'
+import navbar_Doctorly from '../navbar_Doctorly/navbar_Doctorly.vue'
 import axios from 'axios'
 export default {
     components: {
+        header_Doctorly,
+        navbar_Doctorly,
         footer_Cover
     },
     data() {
@@ -146,10 +154,6 @@ export default {
                     this.sund = true
                 }
             })
-        
-
-
-
         },
         mon() {
             this.available_days.push('1')
@@ -223,7 +227,17 @@ export default {
     },
 }
 </script>
-<style scoped> .edit_cover {
+<style scoped>
+*{
+    text-decoration: none;
+}
+.header_cover{
+    width: 100%;
+    height: auto;
+    position: fixed;
+}
+
+ .edit_cover {
      width: 100%;
      height: 180vh;
      background-color: #f8f8fb;

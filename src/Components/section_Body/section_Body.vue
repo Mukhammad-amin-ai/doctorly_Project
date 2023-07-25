@@ -16,21 +16,21 @@
                                 </button>
                             </RouterLink>
                             <p>Show <span>
-                                    <select name="doctorlist" id="doctorlist">
-                                        <option value="10">10</option>
-                                        <option value="25">25</option>
-                                        <option value="50">50</option>
-                                        <option value="100">100</option>
-                                    </select>
-                                </span> entries</p>
+                                <select name="doctorlist" id="doctorlist">
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </span> entries</p>
                         </div>
                     </div>
+                    <div class="list_btn_right">
+                        <label for="search">Search:</label>
+                        <input @keyup="inputSearch" v-model="search" type="text" name="search">
+                    </div>
                     <div class="list_table">
-                        <div class="list_btn_right">
-                            <label for="search">Search:</label>
-                            <input @keyup="inputSearch" v-model="search" type="text" name="search">
-                        </div>
-
+                        <Spinner/>
                         <div class="table">
                             <table>
                                 <thead>
@@ -119,11 +119,13 @@
 </template>
 <script>
 import footer_Cover from '../footer_section/footer_secton.vue'
+import Spinner from '../../ui/spinner.vue';
 import axios from 'axios'
 export default {
     components: {
-        footer_Cover,
-    },
+    footer_Cover,
+    Spinner
+},
     data() {
         return {
             items: [],
@@ -147,23 +149,23 @@ export default {
             this.isLoadingFunc(true)
             try {
                 const response = await fetch(`https://tulibayev.uz/api/doctor?${this.page}`, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token') } })
+                // if(response.status === 401){
+                //     window.location.href='/login'
+                // }
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
                 this.isLoadingFunc(false)
                 const data = await response.json();
                 this.items = data;
+                
             } catch (error) {
                 console.error('Error fetching data:', error);
-                if(error){
-                    window.location.href='/register'
-                }
             }
         },
         changeApi(item) {
             this.page = `page=${item}`
             this.getDataFromAPI()
-
         },
         async getDataSearch() {
             try {
@@ -238,7 +240,10 @@ export default {
 
 table {
     width: 100%;
+    height: auto;
     border-collapse: collapse;
+    position: relative;
+    z-index: 1;
 }
 
 th,
@@ -360,7 +365,7 @@ p:nth-child(1) {
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
-
+    gap: 45px;
 
 }
 
@@ -388,7 +393,8 @@ p:nth-child(1) {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 50px 0 50px 0
+    padding: 50px 0 50px 0;
+    /* flex-direction:column */
 }
 
 .list_inside {

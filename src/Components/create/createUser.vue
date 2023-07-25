@@ -1,4 +1,8 @@
 <template >
+    <div class="header_cover">
+        <header_Doctorly/>
+        <navbar_Doctorly/>
+    </div>
     <div class="edit_cover">
         <div class="edit_input">
             <!-- {{ items }} -->
@@ -69,7 +73,7 @@
                                 </div>
                                 <p>Slots Time (In Minute) *</p>
                                 <div class="slots">
-                                    <v-combobox label="Slots Time" v-model="slots_time"
+                                    <v-combobox label="Slots Time" v-model="slots_time" variant="solo" 
                                         :items="['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50', '51', '52', '53', '54', '55', '56', '57', '58', '59', '60']"></v-combobox>
                                 </div>
                                 <p>Available Time *</p>
@@ -84,9 +88,9 @@
                                             <input type="time" name="to" v-model="available_to">
                                         </div>
                                     </div>
-                                    <div class="addTime">
+                                    <!-- <div class="addTime">
                                         <button>Add Time</button>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="photo">
@@ -114,9 +118,13 @@
 </template>
 <script>
 import footer_Cover from '../footer_section/footer_secton.vue'
+import header_Doctorly from '../header_Doctorly/header_Doctorly.vue'
+import navbar_Doctorly from '../navbar_Doctorly/navbar_Doctorly.vue'
 import axios from 'axios'
 export default {
     components: {
+        header_Doctorly,
+        navbar_Doctorly,
         footer_Cover
     },
     data() {
@@ -196,6 +204,15 @@ export default {
 }
 </script>
 <style scoped>
+*{
+    text-decoration: none;
+}
+
+.header_cover{
+    width: 100%;
+    height: auto;
+    position: fixed;
+}
 .edit_cover {
     width: 100%;
     height: 180vh;

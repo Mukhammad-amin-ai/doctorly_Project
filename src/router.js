@@ -5,6 +5,7 @@ import createUser from "./Components/create/createUser.vue";
 import auth from "./auth/auth.vue";
 import forgot from "./auth/forgot.vue";
 import register from "./auth/register.vue";
+import verification from "./auth/verification.vue"
 import home from "./Components/home.vue";
 export default createRouter({
   history: createWebHistory(),
@@ -19,5 +20,6 @@ export default createRouter({
     { path: "/logIn", component: auth },
     { path: "/forgot-password", component: forgot },
     { path: "/register", component: register },
+    { path: "/verification",component:verification},
   ],
 });

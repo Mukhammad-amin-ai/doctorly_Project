@@ -81,7 +81,7 @@ export default {
                     const token = response.data.token;
                     localStorage.setItem('token', token);
                     if (response.data) {
-                        window.location.href = '/login'
+                        window.location.href = '/verification'
                     }
                 } else {
                     console.log('Ошибка при регистрации:', response.data.error);
@@ -292,6 +292,8 @@ export default {
     color: #1f3dd0;
 
 }
-.already .bx{
-    color:#f46a6a;
-}</style>
+
+.already .bx {
+    color: #f46a6a;
+}
+</style>

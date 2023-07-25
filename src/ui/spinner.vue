@@ -15,17 +15,16 @@ export default {
     }
 }
 </script>
-<style>
-.loading_container2 {
-    display: none;
-}
+<style scoped>
 
 .loading_container {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background-color: #fff;
-    position: fixed;
-    z-index: 999999;
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    left: 0;
 }
 
 .center {
