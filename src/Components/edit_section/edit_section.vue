@@ -1,7 +1,7 @@
 <template >
-     <div class="header_cover">
-        <header_Doctorly/>
-        <navbar_Doctorly/>
+    <div class="header_cover">
+        <header_Doctorly />
+        <navbar_Doctorly />
     </div>
     <div class="edit_cover">
         <div class="edit_input">
@@ -136,8 +136,8 @@ export default {
         this.getIdfromParam(this.id)
     },
     methods: {
-        cheching() {  
-                this.items.available_days.forEach((el) => {
+        cheching() {
+            this.items.available_days.forEach((el) => {
                 if (el === 1) {
                     this.monday = true
                 } else if (el === 2) {
@@ -228,244 +228,245 @@ export default {
 }
 </script>
 <style scoped>
-*{
+* {
     text-decoration: none;
 }
-.header_cover{
+
+.header_cover {
     width: 100%;
     height: auto;
     position: fixed;
 }
 
- .edit_cover {
-     width: 100%;
-     height: 180vh;
-     background-color: #f8f8fb;
-     display: flex;
-     justify-content: flex-end;
-     flex-direction: column;
- }
+.edit_cover {
+    width: 100%;
+    height: 180vh;
+    background-color: #f8f8fb;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+}
 
- .edit_input {
-     width: 100%;
-     height: 100%;
-     display: flex;
-     align-items: flex-end;
-     justify-content: center;
- }
+.edit_input {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
 
- .edit {
-     width: 80%;
-     height: 90%;
-     display: flex;
-     justify-content: center;
-     flex-direction: column;
- }
+.edit {
+    width: 80%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
 
- .text_head {
-     width: 100%;
-     height: 5%;
-     display: flex;
-     justify-content: space-between;
-     align-items: center;
- }
+.text_head {
+    width: 100%;
+    height: 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
- .box {
-     width: 100%;
-     height: 80%;
-     background-color: #ffffff;
-     display: flex;
-     justify-content: center;
-     align-items: center;
- }
+.box {
+    width: 100%;
+    height: 80%;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
- .button {
-     width: 100%;
-     height: 7%;
-     display: flex;
-     align-items: center;
- }
+.button {
+    width: 100%;
+    height: 7%;
+    display: flex;
+    align-items: center;
+}
 
- .form_box {
-     width: 97%;
-     height: 97%;
-     display: flex;
-     flex-direction: column;
+.form_box {
+    width: 97%;
+    height: 97%;
+    display: flex;
+    flex-direction: column;
 
- }
+}
 
- .basic {
-     border-left: 5px solid #556ee6 !important;
-     border: 1px solid rgba(120, 130, 140, .13);
- }
+.basic {
+    border-left: 5px solid #556ee6 !important;
+    border: 1px solid rgba(120, 130, 140, .13);
+}
 
- .basic p {
-     font-size: 13.5px;
-     font-style: normal;
-     font-family: "Poppins", sans-serif;
-     font-weight: 400;
-     padding: 10px;
-     color: #495057;
- }
+.basic p {
+    font-size: 13.5px;
+    font-style: normal;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    padding: 10px;
+    color: #495057;
+}
 
- .back {
-     width: 140px;
-     height: 35px;
-     background-color: #556ee6;
-     display: flex;
-     align-items: center;
-     border: none;
-     border-radius: 0.25rem;
+.back {
+    width: 140px;
+    height: 35px;
+    background-color: #556ee6;
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 0.25rem;
 
- }
+}
 
- .back .bx {
-     font-size: 20px;
-     color: #fff;
- }
+.back .bx {
+    font-size: 20px;
+    color: #fff;
+}
 
- .back p {
-     font-family: 'Poppins', sans-serif;
-     font-size: 15px;
-     color: #fff;
-     font-weight: 400;
+.back p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    color: #fff;
+    font-weight: 400;
 
- }
+}
 
- .form {
-     width: 100%;
-     height: 40%;
-     display: flex;
-     justify-content: space-between;
- }
+.form {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    justify-content: space-between;
+}
 
- .form_left {
-     width: 50%;
-     height: 100%;
-     display: flex;
-     align-items: center;
-     flex-direction: column;
- }
+.form_left {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
 
- form {
-     padding-top: 10px;
-     width: 100%;
-     height: 100%;
-     display: flex;
-     flex-direction: column;
- }
+form {
+    padding-top: 10px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
 
- .form_right {
-     width: 50%;
-     height: 100%;
-     display: flex;
-     align-items: center;
-     flex-direction: column;
- }
+.form_right {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
 
- label {
-     font-size: 13px;
-     font-family: 'Poppins', sans-serif;
-     font-weight: 400;
-     line-height: 1.5;
-     color: #495057;
- }
+label {
+    font-size: 13px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+}
 
- span {
-     color: #f46a6a;
- }
+span {
+    color: #f46a6a;
+}
 
- input[type='text'] {
-     width: 580px;
-     height: 35px !important;
-     padding-left: 10px;
-     border-radius: 0.25rem;
-     border: 1px solid #ced4da;
-     font-family: 'Poppins', sans-serif;
-     font-size: 13px;
-     color: #495057;
- }
+input[type='text'] {
+    width: 580px;
+    height: 35px !important;
+    padding-left: 10px;
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    color: #495057;
+}
 
- input[type='text']:focus {
-     outline: none;
- }
+input[type='text']:focus {
+    outline: none;
+}
 
- .check_Photo {
-     width: 100%;
-     height: 40%;
-     padding: 10px 0 0 0;
-     display: flex;
- }
+.check_Photo {
+    width: 100%;
+    height: 40%;
+    padding: 10px 0 0 0;
+    display: flex;
+}
 
- .photo {
-     width: 50%;
-     height: 100%;
-     display: flex;
-     align-items: flex-start;
+.photo {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
 
- }
+}
 
- .photo .box {
-     width: 50%;
-     height: 100%;
- }
+.photo .box {
+    width: 50%;
+    height: 100%;
+}
 
- .check_box {
-     width: 50%;
-     height: 100%;
- }
+.check_box {
+    width: 50%;
+    height: 100%;
+}
 
- .check_box label {
-     padding: 10px;
- }
+.check_box label {
+    padding: 10px;
+}
 
- .btn_update {
-     width: 100%;
-     height: 20%;
-     display: flex;
-     align-items: end;
-     justify-content: flex-start;
- }
+.btn_update {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    align-items: end;
+    justify-content: flex-start;
+}
 
- .updt {
-     width: 120px;
-     height: 36px;
-     background-color: #6075ec;
-     font-family: 'Poppins', sans-serif;
-     font-size: 13px;
-     font-weight: 400;
-     color: #fff;
-     border: transparent;
-     border-radius: 0.25rem;
- }
+.updt {
+    width: 120px;
+    height: 36px;
+    background-color: #6075ec;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: #fff;
+    border: transparent;
+    border-radius: 0.25rem;
+}
 
- .photo .box {
-     width: 50%;
-     height: 100%;
-     display: flex;
-     justify-content: flex-end;
-     align-items: center;
-     flex-direction: column;
-     gap: 10px;
- }
+.photo .box {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
 
- .imgBox {
-     width: 60%;
-     height: 100%;
-     border-radius: 50%;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     background-color: #495057;
-     overflow: auto;
- }
+.imgBox {
+    width: 60%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #495057;
+    overflow: auto;
+}
 
- .imgBox img {
-     width: 100%;
-     height: 100%;
- }
+.imgBox img {
+    width: 100%;
+    height: 100%;
+}
 
- #hide {
-     display: none;
- }
+#hide {
+    display: none;
+}
 </style>

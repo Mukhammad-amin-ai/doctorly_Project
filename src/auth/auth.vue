@@ -30,10 +30,10 @@
             <div class="btn_reg">
                 <button @click="login"> Log in</button>
             </div>
-             <RouterLink to="forgot-password">
+            <RouterLink to="forgot-password">
 
-                 <p><span><i class='bx bxs-lock-alt'></i></span> Forgot your password?</p>
-             </RouterLink>
+                <p><span><i class='bx bxs-lock-alt'></i></span> Forgot your password?</p>
+            </RouterLink>
 
         </div>
         <div class="already">
@@ -70,12 +70,15 @@ export default {
                 email: this.email,
             };
             try {
-                const response = await axios.post(url, postData, { headers: { token: localStorage.getItem('token') } });
+                const response = await axios.post(url, postData,);
                 this.isLoadingFunc()
                 console.log(response.data);
-                const tokenFromLoc = localStorage.getItem('token')
-                if (tokenFromLoc) {
-                    window.location.href = '/'
+                if (response.data) {
+                    const token = response.data.token;
+                    localStorage.setItem('token', token);
+                    if (response.data) {
+                        window.location.href = '/'
+                    }
                 }
             } catch (error) {
                 console.error('Ошибка запроса:', error);
@@ -307,4 +310,5 @@ export default {
 
 .already .bx {
     color: #f46a6a;
-}</style>
+}
+</style>

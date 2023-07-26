@@ -3,7 +3,6 @@
         <div class="header">
             <div class="logo">
                 <RouterLink to="/">
-
                     <img src="https://doctorly.themesbrand.website/assets/images/logo-light.png" alt="#" height="22">
                 </RouterLink>
             </div>
@@ -42,16 +41,22 @@
                         </RouterLink>
                     </div> -->
                     <div class="text-center">
-                        <v-menu >
+                        <v-menu>
                             <template v-slot:activator="{ props }">
-                                <v-btn color="primary" v-bind="props">
-                                    Dropdown
+                                <v-btn color="rgba(0, 0, 0, 0)" v-bind="props">
+                                    <p>Temurbek</p>
                                 </v-btn>
                             </template>
                             <v-list>
-                                <v-list-item >
-                                    <v-list-item-title>Log in</v-list-item-title>
-                                    <v-list-item-title>Log out</v-list-item-title>
+                                <v-list-item>
+                                    <RouterLink to="/login">
+                                        <v-list-item-title>
+                                            <p>Log in</p>
+                                        </v-list-item-title>
+                                    </RouterLink>
+                                    <v-list-item-title>
+                                        <p id="logout" @click="logout">Log out</p>
+                                    </v-list-item-title>
                                 </v-list-item>
                             </v-list>
                         </v-menu>
@@ -67,11 +72,35 @@
     </div>
 </template>
 <script>
+import axios from 'axios';
+
 export default {
- 
+    methods: {
+        async logout() {
+            try {
+                const response = await axios.get('https://tulibayev.uz/api/user/logout')
+                console.log(response);
+            } catch (error) {
+                console.error('Logout failed:', error);
+
+            }
+        }
+    }
 }
 </script>
-<style >
+<style scoped >
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+
+}
+
+#logout {
+    cursor: pointer;
+}
+
 .header_Cover {
     width: 100%;
     height: 70px;
@@ -192,5 +221,9 @@ export default {
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+
+.text-center p {
+    color: #fff;
 }
 </style>

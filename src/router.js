@@ -10,22 +10,23 @@ import home from "./Components/home.vue";
 
 const verify = "https://tulibayev.uz/api/user/emailverification";
 const login = "https://tulibayev.uz/api/user/login";
-const token = localStorage.getItem("token");
-function parseJwt(token) {
-  var base64Url = token.split(".")[1];
-  var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-  var jsonPayload = decodeURIComponent(
-    window
-      .atob(base64)
-      .split("")
-      .map(function (c) {
-        return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-      })
-      .join("")
-  );
+let token = localStorage.getItem("token");
+  function parseJwt(token) {
+    var base64Url = token.split(".")[1];
+    var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    var jsonPayload = decodeURIComponent(
+      window
+        .atob(base64)
+        .split("")
+        .map(function (c) {
+          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+        })
+        .join("")
+    );
 
-  return JSON.parse(jsonPayload);
-}
+    return JSON.parse(jsonPayload);
+  }
+
 
 export default createRouter({
   history: createWebHistory(),
@@ -34,10 +35,12 @@ export default createRouter({
       path: "/",
       component: home,
       beforeEnter: (to, from, next) => {
-        let a = parseJwt(token);
+        let data = parseJwt(token);
         if (token) {
-          if (a.iss === login || verify) {
+          if (data.iss === (login || verify)) {
             next();
+          }else{
+          next("/login");
           }
         } else {
           next("/login");
@@ -50,7 +53,7 @@ export default createRouter({
       beforeEnter: (to, from, next) => {
         let a = parseJwt(token);
         if (token) {
-          if (a.iss === login || verify) {
+          if (a.iss === (login || verify)) {
             next();
           }
         } else {
@@ -64,7 +67,7 @@ export default createRouter({
       beforeEnter: (to, from, next) => {
         let a = parseJwt(token);
         if (token) {
-          if (a.iss === login || verify) {
+          if (a.iss === (login || verify)) {
             next();
           }
         } else {
@@ -78,4 +81,3 @@ export default createRouter({
     { path: "/verification", component: verification },
   ],
 });
-// eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3R1bGliYXlldi51ei9hcGkvdXNlci9sb2dpbiIsImlhdCI6MTY5MDI2NTkxNywiZXhwIjoxNjkwMzA5MTE3LCJuYmYiOjE2OTAyNjU5MTcsImp0aSI6InluYmp2T2V2UXZxcVZTUUYiLCJzdWIiOiIxMiIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.jQXWQM_6NVn5RJMAH9fMdQQZuZM0XJmo1J3BgGpjK7U

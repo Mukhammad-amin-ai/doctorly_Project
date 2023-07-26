@@ -128,7 +128,7 @@ export default {
     },
     data() {
         return {
-            // items:this.$store.state.items,
+            // items:[],
             page: '1',
             search: '',
             find: '',
@@ -149,7 +149,6 @@ export default {
     mounted() {
         // this.getDataFromAPI(),
         this.fetchData(this.page)
-
     },
     methods: {
         fetchData(page) {
