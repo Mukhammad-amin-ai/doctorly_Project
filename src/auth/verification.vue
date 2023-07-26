@@ -17,8 +17,8 @@
             </div>
             <div class="autifi_Cover">
                 <form class="authifi">
-                    <!-- <label for="username">Email</label>
-                    <input type="email" name="username" id="reset" placeholder="Enter email" v-model="email"> -->
+                    <label for="username">Email</label>
+                    <input type="email" name="username" id="reset" placeholder="Enter email" v-model="email">
                     <label for="password">Password</label>
                     <input type="password" id="reset" v-model="password">
                 </form>
@@ -62,6 +62,7 @@ export default {
                     const token = response.data.token;
                     localStorage.setItem('token', token);
                         if (response.data) {
+                            
                             window.location.href = '/'
                         }
                 } else {
@@ -87,7 +88,7 @@ export default {
 
 .auth_Inputs {
     width: 450px;
-    height: 300px;
+    height: 500px;
     background-color: #fff;
     border-radius: 0.25rem;
     position: relative;
