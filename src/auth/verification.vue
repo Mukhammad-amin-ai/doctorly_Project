@@ -62,7 +62,6 @@ export default {
                     const token = response.data.token;
                     localStorage.setItem('token', token);
                         if (response.data) {
-                            
                             window.location.href = '/'
                         }
                 } else {

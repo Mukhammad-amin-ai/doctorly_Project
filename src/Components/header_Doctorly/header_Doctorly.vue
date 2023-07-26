@@ -2,7 +2,10 @@
     <div class="header_Cover">
         <div class="header">
             <div class="logo">
-                <img src="https://doctorly.themesbrand.website/assets/images/logo-light.png" alt="#" height="22">
+                <RouterLink to="/">
+
+                    <img src="https://doctorly.themesbrand.website/assets/images/logo-light.png" alt="#" height="22">
+                </RouterLink>
             </div>
             <div class="auth">
                 <div class="fullScreen">
@@ -28,7 +31,7 @@
                         <img class="rounded-circle header-profile-user"
                             src=" https://doctorly.themesbrand.website/storage/images/users/1679942419.png" alt="Avatar">
                     </div>
-                    <div class="userName">
+                    <!-- <div class="userName">
                         <RouterLink to="/logIn">
                             <button class="userNameBtn">
                                 <p class="userNameFont">
@@ -37,6 +40,21 @@
                                 </p>
                             </button>
                         </RouterLink>
+                    </div> -->
+                    <div class="text-center">
+                        <v-menu >
+                            <template v-slot:activator="{ props }">
+                                <v-btn color="primary" v-bind="props">
+                                    Dropdown
+                                </v-btn>
+                            </template>
+                            <v-list>
+                                <v-list-item >
+                                    <v-list-item-title>Log in</v-list-item-title>
+                                    <v-list-item-title>Log out</v-list-item-title>
+                                </v-list-item>
+                            </v-list>
+                        </v-menu>
                     </div>
                 </div>
                 <div class="settings">
@@ -50,7 +68,7 @@
 </template>
 <script>
 export default {
-
+ 
 }
 </script>
 <style >

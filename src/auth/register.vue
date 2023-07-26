@@ -74,16 +74,11 @@ export default {
                 password_confirmation: this.confirm,
                 contact_no: this.contact_number
             };
-            // { headers: { Authorization: 'Bearer' + { 'Access-Control-Allow-Origin': '*' } } }
             try {
                 const response = await axios.post(url, postData,);
                 console.log(response.data);
                 if (response.data) {
                     window.location.href = '/verification'
-                    // const token = response.data.token;
-                    // localStorage.setItem('token', token);
-                    // if (response.data) {
-                    // }
                 } else {
                     console.log('Ошибка при регистрации:', response.data.error);
                 }
