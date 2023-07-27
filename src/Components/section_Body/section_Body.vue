@@ -144,6 +144,9 @@ export default {
         loading() {
             return this.$store.state.api.loading;
         },
+        setAuth(){
+            return this.$store.state.authentificated
+        }
     },
     mounted() {
         this.fetchData(this.page)

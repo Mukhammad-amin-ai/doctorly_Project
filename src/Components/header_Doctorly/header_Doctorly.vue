@@ -39,11 +39,6 @@
                             </template>
                             <v-list>
                                 <v-list-item>
-                                    <RouterLink to="/login">
-                                        <v-list-item-title>
-                                            <p>Log in</p>
-                                        </v-list-item-title>
-                                    </RouterLink>
                                     <v-list-item-title>
                                         <p id="logout" @click="logout">Log out</p>
                                     </v-list-item-title>
@@ -71,6 +66,7 @@ export default {
                 const response = await axios.get('https://tulibayev.uz/api/user/logout', {
                     headers: { Authorization: "Bearer " + localStorage.getItem("token") },
                 })
+                localStorage.removeItem('token')
                 if(response.data.message === "User logged out"){
                     window.location.href = '/login'
                 }

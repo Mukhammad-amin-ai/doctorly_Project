@@ -28,7 +28,7 @@
                 </form>
             </div>
             <div class="btn_reg">
-                <button @click="login"> Log in</button>
+                <button @click="login" > Log in</button>
             </div>
             <RouterLink to="forgot-password">
 
@@ -56,6 +56,11 @@ export default {
             xato: false
         }
     },
+    computed:{
+        setAuth(){
+            return this.$store.state.authentificated
+        }
+    },
     methods: {
         isLoadingFunc() {
             this.$store.state.isLoading = true
@@ -72,10 +77,11 @@ export default {
             try {
                 const response = await axios.post(url, postData,);
                 this.isLoadingFunc()
-                console.log(response.data);
+                console.log(response.data); 
                 if (response.data) {
                     const token = response.data.token;
                     localStorage.setItem('token', token);
+                    this.setAuth = true
                     if (response.data) {
                         window.location.href = '/'
                     }
