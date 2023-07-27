@@ -128,7 +128,6 @@ export default {
     },
     data() {
         return {
-            // items:[],
             page: '1',
             search: '',
             find: '',
@@ -147,7 +146,6 @@ export default {
         },
     },
     mounted() {
-        // this.getDataFromAPI(),
         this.fetchData(this.page)
     },
     methods: {

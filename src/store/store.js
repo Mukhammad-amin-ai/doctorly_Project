@@ -31,14 +31,12 @@ const store = createStore({
             window.location.href ='/login'
           }
           commit("setItems", response.data);
-          // console.log(response.status);
           commit("setLoading", false);
         })
         .catch((error) => {
-          console.log(error);
-          // if(error.response.status ===401){
-          //   window.location.href ='/login'
-          // }
+          if(error.status === 401){
+            window.location.href ='/login'
+          }
           commit("setError", error.message);
           commit("setLoading", false);
         });

@@ -30,16 +30,6 @@
                         <img class="rounded-circle header-profile-user"
                             src=" https://doctorly.themesbrand.website/storage/images/users/1679942419.png" alt="Avatar">
                     </div>
-                    <!-- <div class="userName">
-                        <RouterLink to="/logIn">
-                            <button class="userNameBtn">
-                                <p class="userNameFont">
-                                    Temurbek
-                                    <i class='bx bx-chevron-down'></i>
-                                </p>
-                            </button>
-                        </RouterLink>
-                    </div> -->
                     <div class="text-center">
                         <v-menu>
                             <template v-slot:activator="{ props }">
@@ -78,8 +68,12 @@ export default {
     methods: {
         async logout() {
             try {
-                const response = await axios.get('https://tulibayev.uz/api/user/logout')
-                console.log(response);
+                const response = await axios.get('https://tulibayev.uz/api/user/logout', {
+                    headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+                })
+                if(response.data.message === "User logged out"){
+                    window.location.href = '/login'
+                }
             } catch (error) {
                 console.error('Logout failed:', error);
 

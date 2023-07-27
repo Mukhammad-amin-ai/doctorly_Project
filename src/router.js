@@ -11,73 +11,53 @@ import home from "./Components/home.vue";
 const verify = "https://tulibayev.uz/api/user/emailverification";
 const login = "https://tulibayev.uz/api/user/login";
 let token = localStorage.getItem("token");
-  function parseJwt(token) {
-    var base64Url = token.split(".")[1];
-    var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-    var jsonPayload = decodeURIComponent(
-      window
-        .atob(base64)
-        .split("")
-        .map(function (c) {
-          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-        })
-        .join("")
-    );
+function parseJwt(token) {
+  var base64Url = token.split(".")[1];
+  var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+  var jsonPayload = decodeURIComponent(
+    window
+      .atob(base64)
+      .split("")
+      .map(function (c) {
+        return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+      })
+      .join("")
+  );
+  return JSON.parse(jsonPayload);
+}
 
-    return JSON.parse(jsonPayload);
-  }
 
+const routes = [
+  {
+    path: "/",
+    component: home,
+  },
+  {
+    path: "/:id/edit",
+    component: edit_section,
+  },
+  {
+    path: "/create",
+    component: createUser,
+  },
+  { path: "/logIn", component: auth },
+  { path: "/forgot-password", component: forgot },
+  { path: "/register", component: register },
+  { path: "/verification", component: verification },
+];
 
-export default createRouter({
+const router = createRouter({
   history: createWebHistory(),
-  routes: [
-    {
-      path: "/",
-      component: home,
-      beforeEnter: (to, from, next) => {
-        let data = parseJwt(token);
-        if (token) {
-          if (data.iss === (login || verify)) {
-            next();
-          }else{
-          next("/login");
-          }
-        } else {
-          next("/login");
-        }
-      },
-    },
-    {
-      path: "/:id/edit",
-      component: edit_section,
-      beforeEnter: (to, from, next) => {
-        let a = parseJwt(token);
-        if (token) {
-          if (a.iss === (login || verify)) {
-            next();
-          }
-        } else {
-          next("/login");
-        }
-      },
-    },
-    {
-      path: "/create",
-      component: createUser,
-      beforeEnter: (to, from, next) => {
-        let a = parseJwt(token);
-        if (token) {
-          if (a.iss === (login || verify)) {
-            next();
-          }
-        } else {
-          next("/login");
-        }
-      },
-    },
-    { path: "/logIn", component: auth },
-    { path: "/forgot-password", component: forgot },
-    { path: "/register", component: register },
-    { path: "/verification", component: verification },
-  ],
+  routes,
 });
+// router.beforeEach((to, from, next) => {
+  // console.log(token === null);
+  // if (token) {
+  //   next();
+  // } else if (token === null) {
+  //   // next("/login");
+  //   window.location.href = '/login'
+  // }
+// });
+
+export default router;
