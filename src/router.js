@@ -6,26 +6,23 @@ import forgot from "./auth/forgot.vue";
 import register from "./auth/register.vue";
 import verification from "./auth/verification.vue";
 import home from "./Components/home.vue";
-import isUserAuthentificated from "./authChecker";
-
-// const verify = "https://tulibayev.uz/api/user/emailverification";
-// const login = "https://tulibayev.uz/api/user/login";
+import isUserValid from "./authChecker";
 
 const routes = [
   {
     path: "/",
     component: home,
-    meta:{requiredAuth:true}
+    meta: { requiredAuth: true },
   },
   {
     path: "/:id/edit",
     component: edit_section,
-    meta:{requiredAuth:true}
+    meta: { requiredAuth: true },
   },
   {
     path: "/create",
     component: createUser,
-    meta:{requiredAuth:true}
+    meta: { requiredAuth: true },
   },
   {
     path: "/logIn",
@@ -50,11 +47,11 @@ const router = createRouter({
   routes,
 });
 router.beforeEach((to, from, next) => {
-    if( to.meta.requiredAuth && !isUserAuthentificated() ){
-      next('/login')
-    }else{
-      next();
-    }
+  if (to.meta.requiredAuth && !isUserValid()) {
+    next("/login");
+  } else {
+    next();
+  }
 });
 
 export default router;
