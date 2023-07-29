@@ -6,7 +6,7 @@ const store = createStore({
       isLoading: false,
       items: [],
       error: null,
-      authentificated : false
+      // authentificated : false
     };
   },
   mutations: {
@@ -19,9 +19,9 @@ const store = createStore({
     setError(state, error) {
       state.error = error;
     },
-    setAuth(state,authentificated){
-      state.authentificated = authentificated
-    }
+    // setAuth(state,authentificated){
+    //   state.authentificated = authentificated
+    // }
   },
   actions: {
     fetchData({ commit }, page) {

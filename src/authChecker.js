@@ -8,7 +8,7 @@ function isUserValid() {
   }
   try {
     const decodedToken = JSON.parse(atob(token.split(".")[1]));
-    console.log(decodedToken);
+    // console.log(decodedToken);
     if (decodedToken.iss === (login||verify)) {
       return true;
     }else{

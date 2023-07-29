@@ -121,6 +121,7 @@
 import footer_Cover from '../footer_section/footer_secton.vue'
 import Spinner from '../../ui/spinner.vue';
 import axios from 'axios'
+import { mapMutations } from 'vuex';
 export default {
     components: {
         footer_Cover,
@@ -144,14 +145,18 @@ export default {
         loading() {
             return this.$store.state.api.loading;
         },
-        setAuth(){
+        setAuth() {
             return this.$store.state.authentificated
-        }
+        },
+
     },
     mounted() {
         this.fetchData(this.page)
     },
     methods: {
+        ...mapMutations([
+            'setItems'
+        ]),
         fetchData(page) {
             this.$store.dispatch('fetchData', page);
         },
@@ -161,12 +166,14 @@ export default {
         },
         async getDataSearch() {
             try {
-                const response = await fetch(`https://tulibayev.uz/api/search-doctor/${this.search}`, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token') } });
+                const response = await fetch(`https://tulibayev.uz/api/search-doctor/${this.search}`,
+                    { headers: { Authorization: 'Bearer ' + localStorage.getItem('token') } });
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
                 const data = await response.json();
                 this.items = data;
+                this.setItems(data)
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
