@@ -1,6 +1,10 @@
 <template>
+    <Spinner />
     <div class="auth_Cover">
         <p>{{ internet }}</p>
+        <div class="alert">
+            <v-alert icon="error" v-if="showError" type="error" :text="text"></v-alert>
+        </div>
         <div class="auth_Inputs">
             <div class="auth_top">
                 <div class="auth_top_te">
@@ -31,11 +35,9 @@
             <div class="btn_reg">
                 <button @click="login"> Log in</button>
             </div>
-            <RouterLink to="forgot-password" >
-
+            <RouterLink to="forgot-password">
                 <p><span><i class='bx bxs-lock-alt'></i></span> Forgot your password?</p>
             </RouterLink>
-
         </div>
         <div class="already">
             <p>Don't have an account ? ?
@@ -49,25 +51,31 @@
 </template>
 <script>
 import axios from 'axios'
+import Spinner from '../ui/spinner.vue'
+import { mapMutations } from 'vuex';
+
 export default {
+    components: {
+        Spinner
+    },
     data() {
         return {
             email: "",
             password: "",
-            internet: ""
-        }
-    },
-    computed: {
-        setAuth() {
-            return this.$store.state.authentificated
+            showError: false,
+            internet: "",
+            text: "",
+            count: 0,
+            countTo: 10,
         }
     },
 
     methods: {
-        isLoadingFunc() {
-            this.$store.state.isLoading = true
-        },
+        ...mapMutations([
+            'setLoading'
+        ]),
         async login() {
+            this.setLoading(true)
             const url = 'https://tulibayev.uz/api/user/login';
             const postData = {
                 password: this.password,
@@ -75,42 +83,56 @@ export default {
             };
             try {
                 const response = await axios.post(url, postData,);
-                this.isLoadingFunc()
-                console.log(response.data);
-                if (response.data) {
+                // console.log(response.data);
+                if (response.data.token) {
+                    this.setLoading(false)
                     const token = response.data.token;
                     localStorage.setItem('token', token);
-                    this.setAuth = true
-                    if (response.data) {
+                    if (token) {
                         window.location.href = '/'
                     }
                 }
             } catch (error) {
-                console.error('Ошибка запроса:', error.message);
+                console.error('Ошибка запроса:', error);
+                if (error.request.status === 401) {
+                    this.setLoading(false)
+                    this.showError = true
+                    this.text = 'Yo Login yo parol xato terilgan'
+                }
                 if (error.message === 'Network Error') {
-                    // console.log('hello world');
-                    this.internet = 'internetda uzulish',
+                    this.setLoading(false)
+                    this.showError = true
+                    this.text = 'internetda uzulish'
+                    if (this.count <= 5) {
                         this.checker()
+                    }
+                }
+                if (error.request.status === 422) {
+                    this.setLoading(false)
+                    this.showError = true
+                    this.text = 'To\'ldir'
                 }
             }
-
         },
         checker() {
-            // setTimeout(() => {
-            //     let a = setInterval(() => {
-            //         this.login()
-            //     }, 1000)
-            //     clearInterval(a)
-            //     this.internet = 'enni ishlamasa kerakoov'
-            // }, 10000);
+                let interval = setInterval(() => {
+                    this.count++;
+                    if (this.count <= 5) {
+                        this.login();
+                    } else {
+                        clearInterval(interval)
+                    }
+                    console.log(this.count);
+                }, 10000);
         }
     }
 }
 </script>
 <style scoped>
-*{
-    text-decoration: none;
+.alert {
+    padding: 10px;
 }
+
 .auth_Cover {
     width: 100%;
     height: 130vh;
@@ -121,8 +143,6 @@ export default {
     flex-direction: column;
 
 }
-
-
 
 
 .auth_Inputs {

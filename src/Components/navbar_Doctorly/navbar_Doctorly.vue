@@ -13,7 +13,6 @@
                         <i class='bx bx-user-circle'></i>
                         <p>Doctors</p>
                     </button>
-
                 </div>
                 <div class="nav-patients">
                     <button class="nav-patients">
@@ -146,4 +145,14 @@ p {
     display: flex;
     align-items: center;
     gap: 5px;
-}</style>
+}
+
+@media only screen and (max-width: 992px) {
+    .navbarCover {
+        display: none;
+    }
+    
+}
+
+
+</style>

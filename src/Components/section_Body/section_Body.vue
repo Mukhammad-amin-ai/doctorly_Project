@@ -60,7 +60,7 @@
                                         <th>
                                             <p>Option</p>
                                         </th>
-    
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -210,7 +210,11 @@ export default {
 <style scoped>
 .main_Cover {
     width: 100%;
-    height: 150vh;
+    height: 180vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
 }
 
 .doctor_list {
@@ -218,14 +222,14 @@ export default {
     height: 100%;
     display: flex;
     justify-content: center;
+    align-items: end;
 }
 
 .main_body {
     width: 85%;
-    height: 100%;
+    height: 80%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
 }
 
 .doctor {
@@ -239,7 +243,7 @@ export default {
 
 .doc_white {
     width: 100%;
-    height: 80%;
+    height: 100%;
     background-color: #ffffff;
     display: flex;
     justify-content: center;
@@ -299,7 +303,7 @@ export default {
 
 .list_btn_right {
     width: 20%;
-    padding: 50px;
+    padding-bottom: 10px;
     height: 100px;
     display: flex;
     justify-content: flex-end;
@@ -346,7 +350,7 @@ td {
 
 
 thead th p {
-    font-family: 'Poppins',sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 13px;
     font-weight: 500;
     color: #495057;
@@ -378,7 +382,7 @@ td:nth-child(1) {
 
 td:nth-child(8) {
     width: auto;
-    height: 64px;
+    height: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -407,6 +411,7 @@ p {
     width: 100%;
     height: 10%;
     display: flex;
+    align-items: center;
     justify-content: space-between;
 }
 
@@ -416,7 +421,6 @@ p {
     height: 33px;
     text-align: center;
     display: flex;
-
 }
 
 .first button {
@@ -436,6 +440,32 @@ p {
     cursor: pointer;
 }
 
+@media only screen and (max-width: 992px) {
+    .main_Cover {
+        height: 190vh;
+        gap: 50px;
+    }
 
+    .main_body {
+        height: 90%;
+    }
 
+    .list_btn {
+        height: 120px;
+    }
+
+    .list_btn_left {
+        width: 30%;
+    }
+
+    .list_btn_right {
+        width: 30%;
+    }
+    th:nth-child(2){
+        display: none;
+    }
+    td:nth-child(2){
+        display: none;
+    }
+}
 </style>
