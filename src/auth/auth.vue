@@ -101,10 +101,11 @@ export default {
                 }
                 if (error.message === 'Network Error') {
                     this.setLoading(false)
-                    this.showError = true
-                    this.text = 'internetda uzulish'
                     if (this.count <= 5) {
                         this.checker()
+                        this.showError = true
+                        this.text = 'internetda uzulish'
+                    // this.setLoading(true)
                     }
                 }
                 if (error.request.status === 422) {
@@ -115,15 +116,17 @@ export default {
             }
         },
         checker() {
-                let interval = setInterval(() => {
-                    this.count++;
-                    if (this.count <= 5) {
-                        this.login();
-                    } else {
-                        clearInterval(interval)
-                    }
-                    console.log(this.count);
-                }, 10000);
+            let interval = setInterval(() => {
+                this.count++;
+                if (this.count <= 5) {
+                    this.login();
+                } else {
+                    clearInterval(interval)
+                    this.text = 'Enni ishlamasa kerakoov'
+                    // this.setLoading(false)
+                }
+                console.log(this.count);
+            }, 1000);
         }
     }
 }
