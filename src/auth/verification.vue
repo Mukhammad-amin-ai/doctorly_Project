@@ -75,6 +75,9 @@ export default {
 }
 </script>
 <style scoped>
+*{
+    text-decoration: none;
+}
 .auth_Cover {
     width: 100vw;
     height: 100vh;

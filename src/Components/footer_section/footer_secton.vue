@@ -10,7 +10,7 @@
 export default {
 }
 </script>
-<style>
+<style scoped>
 p {
     font-size: 14px;
     font-weight: 700px;
@@ -25,7 +25,6 @@ p {
     background-color: #f2f2f5;
     display: flex;
     justify-content: center;
-
 }
 
 .footer {

@@ -1,5 +1,6 @@
 <template>
     <div class="auth_Cover">
+        <p>{{ internet }}</p>
         <div class="auth_Inputs">
             <div class="auth_top">
                 <div class="auth_top_te">
@@ -28,9 +29,9 @@
                 </form>
             </div>
             <div class="btn_reg">
-                <button @click="login" > Log in</button>
+                <button @click="login"> Log in</button>
             </div>
-            <RouterLink to="forgot-password">
+            <RouterLink to="forgot-password" >
 
                 <p><span><i class='bx bxs-lock-alt'></i></span> Forgot your password?</p>
             </RouterLink>
@@ -53,20 +54,18 @@ export default {
         return {
             email: "",
             password: "",
-            xato: false
+            internet: ""
         }
     },
-    computed:{
-        setAuth(){
+    computed: {
+        setAuth() {
             return this.$store.state.authentificated
         }
     },
+
     methods: {
         isLoadingFunc() {
             this.$store.state.isLoading = true
-        },
-        xatolik() {
-            this.xato = true
         },
         async login() {
             const url = 'https://tulibayev.uz/api/user/login';
@@ -77,7 +76,7 @@ export default {
             try {
                 const response = await axios.post(url, postData,);
                 this.isLoadingFunc()
-                console.log(response.data); 
+                console.log(response.data);
                 if (response.data) {
                     const token = response.data.token;
                     localStorage.setItem('token', token);
@@ -87,18 +86,31 @@ export default {
                     }
                 }
             } catch (error) {
-                console.error('Ошибка запроса:', error);
-                this.xatolik()
+                console.error('Ошибка запроса:', error.message);
+                if (error.message === 'Network Error') {
+                    // console.log('hello world');
+                    this.internet = 'internetda uzulish',
+                        this.checker()
+                }
             }
+
+        },
+        checker() {
+            // setTimeout(() => {
+            //     let a = setInterval(() => {
+            //         this.login()
+            //     }, 1000)
+            //     clearInterval(a)
+            //     this.internet = 'enni ishlamasa kerakoov'
+            // }, 10000);
         }
     }
-
-
-
-
 }
 </script>
 <style scoped>
+*{
+    text-decoration: none;
+}
 .auth_Cover {
     width: 100%;
     height: 130vh;

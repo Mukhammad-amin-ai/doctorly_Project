@@ -40,7 +40,7 @@
                             <v-list>
                                 <v-list-item>
                                     <v-list-item-title>
-                                        <p id="logout" @click="logout">Log out</p>
+                                        <p class="logout" @click="logout">Log out</p>
                                     </v-list-item-title>
                                 </v-list-item>
                             </v-list>
@@ -67,30 +67,17 @@ export default {
                     headers: { Authorization: "Bearer " + localStorage.getItem("token") },
                 })
                 localStorage.removeItem('token')
-                if(response.data.message === "User logged out"){
+                if (response.data.message === "User logged out") {
                     window.location.href = '/login'
                 }
             } catch (error) {
                 console.error('Logout failed:', error);
-
             }
         }
     }
 }
 </script>
 <style scoped >
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-
-}
-
-#logout {
-    cursor: pointer;
-}
-
 .header_Cover {
     width: 100%;
     height: 70px;
@@ -99,7 +86,7 @@ export default {
     justify-content: center;
 }
 
-.header {
+.header_Cover .header {
     width: 85%;
     height: 100%;
     display: flex;
@@ -107,7 +94,12 @@ export default {
     align-items: center;
 }
 
-.auth {
+.header_Cover .header .logo {
+    width: 100px;
+    height: auto;
+}
+
+.header .auth {
     width: 335.15px;
     height: 70px;
     display: flex;
@@ -115,8 +107,10 @@ export default {
     align-items: center;
 }
 
-.fullScreen,
-.fullScreen_Btn {
+
+
+.header .auth .fullScreen,
+.header .auth .fullScreen .fullScreen_Btn {
     width: 46px;
     height: 100%;
     display: flex;
@@ -124,18 +118,16 @@ export default {
     align-items: center;
 }
 
-.fullScreen_Btn,
-.notif_Bell_Btn,
-.setting_Btn,
-.langBtn {
+.header .auth .fullScreen .fullScreen_Btn,
+.header .auth .notif.notif_Bell_Btn,
+.header .auth .settings .setting_Btn,
+.header .auth .lang .langBtn {
     background: transparent;
     border: transparent;
     cursor: pointer;
 }
 
-.bx-fullscreen,
-.bx-bell,
-.bx-cog {
+.bx {
     font-size: 25px;
     color: #fff;
 }
@@ -215,5 +207,9 @@ export default {
 
 .text-center p {
     color: #fff;
+}
+
+.logout {
+    cursor: pointer;
 }
 </style>

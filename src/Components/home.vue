@@ -26,15 +26,13 @@ export default {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    text-decoration: none;
 }
 
 .container {
     width: 100%;
     height: auto;
     background-color: #f8f8fb;
-    display: flex;
-    flex-direction: column;
-
 }
 
 .scroll {

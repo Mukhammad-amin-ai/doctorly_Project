@@ -1,37 +1,37 @@
 <template >
-    <div class="main-Cover">
-        <div class="doctor_list"></div>
-        <div class="main_body">
-            <div class="doctor">
-                <p>DOCTOR LIST</p>
-                <p>Dashboard / Doctors</p>
-            </div>
-            <div class="doc-white">
-                <div class="list_inside">
-                    <div class="list_btn">
-                        <div class="list_btn_left">
-                            <RouterLink to="/create">
-                                <button class="add_New_Doc">
-                                    <p> + New Doctor </p>
-                                </button>
-                            </RouterLink>
-                            <p>Show <span>
-                                    <select name="doctorlist" id="doctorlist">
-                                        <option value="10">10</option>
-                                        <option value="25">25</option>
-                                        <option value="50">50</option>
-                                        <option value="100">100</option>
-                                    </select>
-                                </span> entries</p>
+    <div class="main_Cover">
+        <div class="doctor_list">
+            <div class="main_body">
+                <div class="doctor">
+                    <p>DOCTOR LIST</p>
+                    <p>Dashboard / Doctors</p>
+                </div>
+                <div class="doc_white">
+                    <div class="list_inside">
+                        <div class="list_btn">
+                            <div class="list_btn_left">
+                                <RouterLink to="/create">
+                                    <button class="add_New_Doc">
+                                        <p> + New Doctor </p>
+                                    </button>
+                                </RouterLink>
+                                <p>Show <span>
+                                        <select name="doctorlist" class="doctorlist">
+                                            <option value="10">10</option>
+                                            <option value="25">25</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select>
+                                    </span> entries</p>
+                            </div>
+                            <div class="list_btn_right">
+                                <label for="search">Search:</label>
+                                <input @keyup="inputSearch" v-model="search" type="text" name="search">
+                            </div>
                         </div>
-                    </div>
-                    <div class="list_btn_right">
-                        <label for="search">Search:</label>
-                        <input @keyup="inputSearch" v-model="search" type="text" name="search">
-                    </div>
-                    <div class="list_table">
-                        <Spinner />
-                        <div class="table">
+                        <div class="list_table">
+                            <Spinner />
+                            <!-- <div class="table"> -->
                             <table>
                                 <thead>
                                     <tr>
@@ -60,7 +60,7 @@
                                         <th>
                                             <p>Option</p>
                                         </th>
-
+    
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -109,10 +109,12 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- </div> -->
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
         <footer_Cover />
     </div>
@@ -197,7 +199,6 @@ export default {
             if (window.confirm('ochiraymi')) {
                 this.delete = item
                 await this.deleteDataFromAPI()
-                // this.getDataFromAPI()
                 this.fetchData()
             }
         },
@@ -207,6 +208,95 @@ export default {
 
 </script>
 <style scoped>
+.main_Cover {
+    width: 100%;
+    height: 150vh;
+}
+
+.doctor_list {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.main_body {
+    width: 85%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.doctor {
+    width: 100%;
+    height: 70px;
+    background-color: #f8f8fb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.doc_white {
+    width: 100%;
+    height: 80%;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.list_inside {
+    width: 96%;
+    height: 94%;
+    position: relative;
+    z-index: 0;
+}
+
+.list_btn {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list_btn_left {
+    width: 20%;
+    height: 100px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.add_New_Doc {
+    width: 148px;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    background-color: #556ee6;
+}
+
+.add_New_Doc p {
+    color: #fff;
+    font-weight: 400;
+}
+
+.doctorlist:focus {
+    outline: none;
+}
+
+.doctorlist {
+    width: 55px;
+    height: 30px;
+    border: 1px solid !important;
+    border-radius: 0.25rem;
+    padding: 0 5px 0 5px;
+    font-size: 11px;
+    font-family: 'Poppins', sans-serif;
+}
+
 .list_btn_right {
     width: 20%;
     padding: 50px;
@@ -215,9 +305,6 @@ export default {
     justify-content: flex-end;
     align-items: flex-start;
     flex-direction: column;
-    position: absolute;
-    right: 0;
-    top: 20px;
 }
 
 .list_btn_right label {
@@ -238,9 +325,14 @@ export default {
     outline: none;
 }
 
+.list_table {
+    width: 100%;
+    height: 90%;
+}
+
 table {
     width: 100%;
-    height: auto;
+    height: 90%;
     border-collapse: collapse;
     position: relative;
     z-index: 1;
@@ -254,16 +346,10 @@ td {
 
 
 thead th p {
-    font-size: 13px !important;
-    font-weight: 600 !important;
-}
-
-th p {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-    font-size: 13px !important;
-    font-style: normal;
-
+    font-family: 'Poppins',sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #495057;
 }
 
 td p {
@@ -308,11 +394,18 @@ tbody button {
     color: #fff;
 }
 
+p {
+    font-size: 14px;
+    font-weight: 700px;
+    font-style: normal;
+    color: #000;
+    font-family: "Poppins" sans-serif;
+}
+
+
 .list_end {
     width: 100%;
-    height: 70px;
-    position: absolute;
-    bottom: 0;
+    height: 10%;
     display: flex;
     justify-content: space-between;
 }
@@ -339,127 +432,10 @@ tbody button {
     border: 1px solid;
 }
 
-p {
-    font-size: 14px;
-    font-weight: 700px;
-    font-style: normal;
-    color: #000;
-    font-family: "Poppins" sans-serif;
-}
-
-p:nth-child(1) {
-    font-size: 13px;
-    font-weight: 400;
-    color: #495057;
-}
-
-.doctor_list {
-    width: 100%;
-    height: 200px;
-}
-
-.main-Cover {
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-    gap: 45px;
-
-}
-
-.main_body {
-    width: 85%;
-    height: 70%;
-    display: flex;
-    flex-direction: column;
-
-}
-
-.doctor {
-    width: 100%;
-    height: 70px;
-    background-color: #f8f8fb;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.doc-white {
-    width: 100%;
-    height: 92%;
-    background-color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 50px 0 50px 0;
-    /* flex-direction:column */
-}
-
-.list_inside {
-    width: 96%;
-    height: 94%;
-    position: relative;
-    z-index: 0;
-}
-
-.list_btn {
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.list_btn_left {
-    width: 20%;
-    height: 100px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: flex-start;
-    flex-direction: column;
-    position: absolute;
-}
-
-.add_New_Doc {
-    width: 148px;
-    height: 35px;
-    border: none;
-    border-radius: 5px;
-    background-color: #556ee6;
-}
-
-#doctorlist {
-    width: 55px;
-    height: 30px;
-    border: 1px solid !important;
-    border-radius: 0.25rem;
-    padding: 0 5px 0 5px;
-    font-size: 11px;
-    font-family: 'Poppins', sans-serif;
-}
-
-#doctorlist:focus {
-    outline: none;
-}
-
-.add_New_Doc p {
-    color: #fff;
-    font-weight: 400;
-}
-
-
-
-.list_table {
-    width: 100%;
-    height: auto;
-    padding: 80px 0 80px 0;
-}
-
-
 .first {
     cursor: pointer;
-
 }
+
+
+
 </style>
